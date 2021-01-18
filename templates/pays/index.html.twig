@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PAYS{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Voir tous les pays</h1>
+    <table>
+
+        <tr>
+            <td>Nom du Pays</td>
+            <td>Nom du Cardinal</td>
+            <td>Action</td>
+        </tr>
+        {% for pays in payss %}
+            <tr>
+                <td>{{pays.nomPays}}</td>
+                <td>{{pays.nomCardinale}}</td>
+                <td><a href="{{ path('pays_show') }}" class="btn btn-primary">Détails</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+
+
+{% endblock %}
