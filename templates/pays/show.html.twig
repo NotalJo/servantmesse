@@ -2,7 +2,9 @@
 {% block body %}
     <article>
         <div class="content">
-            Pour le pays ce sera à la charge de Son Eminence
+            <p>Nom du Pays: {{ pays.nomPays }}</p>
+            <p>Nom du Cardinal: {{ pays.nomCardinale }}</p>
+            <p>Ajouté le : {{ pays.createdAt | date('d/m/Y') }} à {{ pays.createdAt | date('H:i') }}</p>
         </div>
     </article>
 {% endblock %}

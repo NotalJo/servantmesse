@@ -6,15 +6,15 @@ use App\Entity\Pays;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\PaysRepository;
 
 class PaysController extends AbstractController
 {
     /**
      * @Route("/pays", name="pays")
      */
-    public function index(): Response
+    public function index(PaysRepository $repo): Response
     {
-        $repo= $this->getDoctrine()->getRepository(Pays::class);
         $payss = $repo->findAll();
         return $this->render('pays/index.html.twig', [
             'controller_name' => 'PaysController',
@@ -24,10 +24,12 @@ class PaysController extends AbstractController
 
     /**
      *
-     * @Route("/pays/12", name="pays_show")
+     * @Route("/pays/{id}", name="pays_show")
      */
-    public function show(): Response
+    public function show(Pays $pays): Response
     {
-        return $this->render('pays/show.html.twig');
+        return $this->render('pays/show.html.twig',[
+            'pays' => $pays
+        ]);
     }
 }

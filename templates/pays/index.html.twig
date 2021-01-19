@@ -8,15 +8,17 @@
     <table>
 
         <tr>
+            <td>Ajouté le</td>
             <td>Nom du Pays</td>
             <td>Nom du Cardinal</td>
             <td>Action</td>
         </tr>
         {% for pays in payss %}
             <tr>
+                <td>{{pays.createdAt | date('d/m/Y')}} à {{pays.createdAt | date('H:i')}}</td>
                 <td>{{pays.nomPays}}</td>
                 <td>{{pays.nomCardinale}}</td>
-                <td><a href="{{ path('pays_show') }}" class="btn btn-primary">Détails</a></td>
+                <td><a href="{{ path('pays_show',{'id': pays.id}) }}" class="btn btn-primary">Détails</a></td>
             </tr>
         {% endfor %}
         </table>
