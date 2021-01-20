@@ -19,9 +19,12 @@
                 <td>{{pays.nomPays}}</td>
                 <td>{{pays.nomCardinale}}</td>
                 <td><a href="{{ path('pays_show',{'id': pays.id}) }}" class="btn btn-primary">Détails</a></td>
+                <td><a href="{{ path('pays_edit',{'id': pays.id}) }}" class="btn btn-success">Modifier</a></td>
+                <td><a href="{{ path('pays_show',{'id': pays.id}) }}" class="btn btn-danger">Supprimer</a></td>
             </tr>
         {% endfor %}
         </table>
+        <a href="{{path('pays_create')}}" class="btn btn-primary"> Nouveau Pays</a>
     </div>
 
 

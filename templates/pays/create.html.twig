@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% form_theme formPays 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+{% if editMode %}
+            <h1>Modification d'un Pays</h1>
+        {% else %}
+            <h1>Création d'un Pays</h1>
+        {% endif %}
+
+
+{{form_start(formPays)}}
+
+    {{form_row(formPays.nomPays,{'attr':{'label': "Pays",'placeholder':"Nom du Pays"}})}}
+    {{form_row(formPays.nomCardinale,{'attr':{'label': "Cardinal",'placeholder':"Nom du Cardinal de ce pays"}})}}
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Enregistrer
+        {% endif %}
+
+    </button>
+{{form_end(formPays)}}
+
+{% endblock %}
