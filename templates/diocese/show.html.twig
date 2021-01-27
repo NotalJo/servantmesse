@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <article>
+        <div class="content">
+            <div class="metadata">Ajouté le : {{ diocese.createdAt | date('d/m/Y') }} à {{ diocese.createdAt | date('H:i') }}</div>
+            <p>Archidiocèse: {{diocese.archidiocese.nomArchidiocese}}</p>
+            <p>Nom Diocèse: {{ diocese.nomDiocese }}</p>
+            <p>Nom Evêque: {{ diocese.evequeActuelle }}</p>
+            <p>Nom Vicaire Générale: {{ diocese.vicaireGenerale }}</p>
+
+            <a href="{{ path('archidiocese') }}" class="btn btn-primary">RETOUR</a>
+        </div>
+    </article>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% form_theme formDiocese 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+{% if editMode %}
+            <h1>Modification du Diocèse</h1>
+        {% else %}
+            <h1>Création Diocèse</h1>
+        {% endif %}
+
+
+{{form_start(formDiocese)}}
+
+    {{form_row(formDiocese.nomDiocese,{'attr':{'label': "Diocese",'placeholder':"Nom du diocèse"}})}}
+    {{form_row(formDiocese.evequeActuelle,{'attr':{'label': "Evêque",'placeholder':"Nom de l'Evêque actuel"}})}}
+    {{form_row(formDiocese.vicaireGenerale,{'attr':{'label': "Vicaire Générale",'placeholder':"Nom du Vicaire Générale"}})}}
+    {{form_row(formDiocese.archidiocese)}}
+    <br/>
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Enregistrer
+        {% endif %}
+
+    </button>
+{{form_end(formDiocese)}}
+
+{% endblock %}
