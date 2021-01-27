@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% form_theme formSudvisionEcclesiastique 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+{% if editMode %}
+            <h1>Modification du Subdivision</h1>
+        {% else %}
+            <h1>Création de la Subdivision</h1>
+        {% endif %}
+
+
+{{form_start(formSudvisionEcclesiastique)}}
+
+    {{form_row(formSudvisionEcclesiastique.nomSubdivision,{'attr':{'label': "Subdivision",'placeholder':"Nom de la subdivision"}})}}
+    {{form_row(formSudvisionEcclesiastique.niveauSubdivision,{'attr':{'label': "Niveau",'placeholder':"Niveau de la subdivision"}})}}
+    {{form_row(formSudvisionEcclesiastique.lieuSubdivision,{'attr':{'label': "Lieu",'placeholder':"Localisation"}})}}
+    {{form_row(formSudvisionEcclesiastique.dioceseSubdivision)}}
+    <br/>
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Enregistrer
+        {% endif %}
+
+    </button>
+{{form_end(formSudvisionEcclesiastique)}}
+
+{% endblock %}

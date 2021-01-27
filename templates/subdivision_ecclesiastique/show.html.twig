@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <article>
+        <div class="content">
+            <div class="metadata">Ajouté le : {{ subdivisionEcclesiastique.createdAt | date('d/m/Y') }} à {{ subdivisionEcclesiastique.createdAt | date('H:i') }}</div>
+            <p>Diocèse: {{subdivisionEcclesiastique.dioceseSubdivision.nomDiocese}}</p>
+            <p>Nom subdivision: {{ subdivisionEcclesiastique.nomSubdivision }}</p>
+            <p>Niveau subdivision: {{ subdivisionEcclesiastique.niveauSubdivision }}</p>
+            <p>Lieu subdivision: {{ subdivisionEcclesiastique.lieuSubdivision }}</p>
+
+            <a href="{{ path('subdivision_ecclesiastique') }}" class="btn btn-primary">RETOUR</a>
+        </div>
+    </article>
+{% endblock %}
