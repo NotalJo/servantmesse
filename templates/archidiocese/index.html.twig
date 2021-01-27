@@ -1,20 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArchidioceseController!{% endblock %}
+{% block title %}ARCHIDIOCESE{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ <div class="container">
+        <h1>Voir tous les archidiocese</h1>
+    <table>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <tr>
+            <td>Nom du Pays</td>
+            <td>Ajouté le</td>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/servantmesse/src/Controller/ArchidioceseController.php'|file_link(0) }}">src/Controller/ArchidioceseController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/servantmesse/templates/archidiocese/index.html.twig'|file_link(0) }}">templates/archidiocese/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <td>Nom de l'archidiocese</td>
+            <td>Nom de l'archevêque</td>
+            <td>Action</td>
+        </tr>
+        {% for archidiocese in archidioceses %}
+            <tr>
+                <td>{{archidiocese.pays.nomPays}}</td>
+                <td>{{archidiocese.createdAt | date('d/m/Y')}} à {{archidiocese.createdAt | date('H:i')}}</td>
+                <td>{{archidiocese.nomArchidiocese}}</td>
+                <td>{{archidiocese.nomArcheveque}}</td>
+                <td><a href="{{ path('archidiocese_show',{'id': archidiocese.id}) }}" class="btn btn-primary">Détails</a></td>
+                <td><a href="{{ path('archidiocese_edit',{'id': archidiocese.id}) }}" class="btn btn-success">Modifier</a></td>
+                <td><a href="{{ path('archidiocese_show',{'id': archidiocese.id}) }}" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+        <a href="{{path('archidiocese_create')}}" class="btn btn-primary"> Nouvelle Archidiocese</a>
+    </div>
+
 {% endblock %}

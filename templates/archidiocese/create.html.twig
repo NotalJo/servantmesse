@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% form_theme formArchidiocese 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+{% if editMode %}
+            <h1>Modification de l'Archidiocese</h1>
+        {% else %}
+            <h1>Création Archidiocese</h1>
+        {% endif %}
+
+
+{{form_start(formArchidiocese)}}
+
+    {{form_row(formArchidiocese.nomArchidiocese,{'attr':{'label': "Archidiocese",'placeholder':"Nom de l'Archidiocese"}})}}
+    {{form_row(formArchidiocese.nomArcheveque,{'attr':{'label': "Archevêque",'placeholder':"Nom de l'Archevêque"}})}}
+    {{form_row(formArchidiocese.pays,{'attr':{'label': "Pays",'placeholder':"Nom du Pays"}})}}
+    <br/>
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Enregistrer
+        {% endif %}
+
+    </button>
+{{form_end(formArchidiocese)}}
+
+{% endblock %}

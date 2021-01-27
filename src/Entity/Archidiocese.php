@@ -6,6 +6,7 @@ use App\Repository\ArchidioceseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArchidioceseRepository::class)
@@ -26,6 +27,7 @@ class Archidiocese
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * * @Assert\NotNull
      */
     private $nomArcheveque;
 
@@ -36,6 +38,7 @@ class Archidiocese
 
     /**
      * @ORM\ManyToOne(targetEntity=Pays::class, inversedBy="archidioceses")
+     * * @Assert\NotNull
      */
     private $pays;
 
