@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <article>
+        <div class="content">
+            <div class="metadata">Ajouté le : {{ paroisse.createdAt | date('d/m/Y') }} à {{ paroisse.createdAt | date('H:i') }}</div>
+            <p>Subdivision: {{paroisse.subdivisionEcclesiastique.nomSubdivision}}</p>
+            <p>Nom Paroisse: {{ paroisse.nomParoisse }}</p>
+            <p>Adresse Paroisse : {{ paroisse.adresseParoisse }}</p>
+
+            <a href="{{ path('paroisse') }}" class="btn btn-primary">RETOUR</a>
+        </div>
+    </article>
+{% endblock %}

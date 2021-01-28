@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+{% form_theme formParoisse 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+{% if editMode %}
+            <h1>Modification de la Paroisse</h1>
+        {% else %}
+            <h1>Création Paroisse</h1>
+        {% endif %}
+
+
+{{form_start(formParoisse)}}
+
+    {{form_row(formParoisse.nomParoisse,{'attr':{'label': "Paroisse",'placeholder':"Nom de la Paroisse"}})}}
+    {{form_row(formParoisse.adresseParoisse,{'attr':{'label': "Adresse",'placeholder':"Adresse de la paroisse"}})}}
+    {{form_row(formParoisse.subdivisionEcclesiastique)}}
+    <br/>
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Enregistrer
+        {% endif %}
+
+    </button>
+{{form_end(formParoisse)}}
+
+{% endblock %}
