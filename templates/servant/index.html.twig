@@ -1,10 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ServantController!{% endblock %}
+{% block title %}SERVANTS{% endblock %}
 
 {% block body %}
+ <div class="container">
+        <h1>Voir tous les servants</h1>
+    <table>
 
-    <h1>Hello {{ controller_name }}! </h1>
+        <tr>
+            <td>Nom de la Paroisse</td>
+            <td>Ajouté le</td>
 
+
+            <td>Nom du servant</td>
+            <td>Prénom du servant</td>
+            <td>Date de naissance du servant</td>
+            <td>Adresse du servant</td>
+            <td>Action</td>
+        </tr>
+        {% for servant in servants %}
+            <tr>
+                <td>{{servant.paroisseServant.nomParoisse}}</td>
+                <td>{{servant.createdAt | date('d/m/Y')}} à {{servant.createdAt | date('H:i')}}</td>
+                <td>{{servant.nomServant}}</td>
+                <td>{{servant.prenomServant}}</td>
+                <td>{{servant.dateNaissance | date('d/m/Y')}}</td>
+                <td>{{servant.adresseServant}}</td>
+                <td><a href="{{ path('servant_show',{'id': servant.id}) }}" class="btn btn-primary">Détails</a></td>
+                <td><a href="{{ path('servant_edit',{'id': servant.id}) }}" class="btn btn-success">Modifier</a></td>
+                <td><a href="{{ path('servant_show',{'id': servant.id}) }}" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+        <a href="{{path('servant_create')}}" class="btn btn-primary"> Nouveau Servant</a>
+    </div>
 
 {% endblock %}

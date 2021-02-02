@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+{% form_theme formServant 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+{% if editMode %}
+            <h1>Modification Servant</h1>
+        {% else %}
+            <h1>Création Servant</h1>
+        {% endif %}
+
+
+{{form_start(formServant)}}
+{% if editMode %}
+            <h2>PHOTO</h2>
+
+                <div>
+                    <img class="image-display" src="{{asset('uploads/'~servant.photoServant)}}" width="400" height="600"/>
+
+                </div>
+        {% endif %}
+    {{ form_widget(formServant) }}
+
+    <br/>
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Modifier
+        {% else %}
+            Enregistrer
+        {% endif %}
+
+    </button>
+{{form_end(formServant)}}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/images.js') }}"></script>
+{% endblock %}
