@@ -19,6 +19,17 @@ class ServantRepository extends ServiceEntityRepository
         parent::__construct($registry, Servant::class);
     }
 
+    public function recuperationMaxIdParProisse($value){
+        dump($value);
+        return $this->createQueryBuilder('m')
+                    ->select('MAX(m.id)')
+                   // ->from('Servant:Entity','m')
+                    ->andwhere('m.paroisseServant =:val')
+                    ->setParameter('val',$value)
+                    ->getQuery()
+                    ->getResult();
+    }
+
     // /**
     //  * @return Servant[] Returns an array of Servant objects
     //  */
