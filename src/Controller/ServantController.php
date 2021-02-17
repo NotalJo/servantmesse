@@ -46,11 +46,16 @@ class ServantController extends AbstractController
             if(!$servant->getId()){
                 $servant->setCreatedAt(new \DateTime());
             }
+
+            //Traitement abbreviation Paroisse
+            $abr= $servant->getDateAdhesion()->format("dmY") .$servant->getParoisseServant()->getAbbreviationParoisse(). "TVE" ;
+            $ref= "Reference: " . $abr. " Adresse: " .$servant->getAdresseServant(). " Nom: " .$servant->getNomServant();
+            $servant->setReferenceServant($ref);
             $images = $form->get('images')->getData();
-            $fichier= md5(uniqid()).'.'.$images->guessExtension();
+            //$fichier= md5(uniqid()).'.'.$images->guessExtension();
+            $fichier= $servant->getId()." ".$abr. " ".$servant->getNomServant(). " " .$servant->getPrenomServant(). '.'.$images->guessExtension();
             $images->move($this->getParameter('images_directory'),$fichier);
             $servant->setPhotoServant($fichier);
-            $servant->setReferenceServant("test1");
             $this->em->persist($servant);
             $this->em->flush();
             return $this->redirectToRoute('servant_show',[

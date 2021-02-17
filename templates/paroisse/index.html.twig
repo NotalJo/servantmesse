@@ -13,6 +13,7 @@
 
             <td>Nom de la paroisse</td>
             <td>Adresse de la Paroisse</td>
+            <td>Abbréviation de la Paroisse</td>
             <td>Action</td>
         </tr>
         {% for paroisse in paroisses %}
@@ -21,6 +22,7 @@
                 <td>{{paroisse.createdAt | date('d/m/Y')}} à {{paroisse.createdAt | date('H:i')}}</td>
                 <td>{{paroisse.nomParoisse}}</td>
                 <td>{{paroisse.adresseParoisse}}</td>
+                <td>{{paroisse.abbreviationParoisse}}</td>
                 <td><a href="{{ path('paroisse_show',{'id': paroisse.id}) }}" class="btn btn-primary">Détails</a></td>
                 <td><a href="{{ path('paroisse_edit',{'id': paroisse.id}) }}" class="btn btn-success">Modifier</a></td>
                 <td><a href="{{ path('paroisse_show',{'id': paroisse.id}) }}" class="btn btn-danger">Supprimer</a></td>

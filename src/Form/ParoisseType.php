@@ -16,6 +16,7 @@ class ParoisseType extends AbstractType
         $builder
             ->add('nomParoisse')
             ->add('adresseParoisse')
+            ->add('abbreviationParoisse')
             ->add('subdivisionEcclesiastique',EntityType::class,[
                 'class' => SubdivisionEcclesiastique::class,
                 'choice_label' => 'nomSubdivision'

@@ -6,8 +6,11 @@ use App\Entity\Paroisse;
 use App\Entity\Servant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,10 +20,13 @@ class ServantType extends AbstractType
     {
         $builder
             ->add('paroisseServant',EntityType::class,[
+                'label' =>'Paroisse',
                 'class' => Paroisse::class,
                 'choice_label' => 'nomParoisse'
             ])
-            ->add('photoServant')
+            ->add('photoServant',TextType::class,[
+                'label' =>'Photo du servant',
+            ])
             //image pas lié à la base de données
             ->add('images', FileType::class,[
                 'label' =>false,
@@ -28,38 +34,77 @@ class ServantType extends AbstractType
                 'mapped' => false,
                 'required' =>false
             ])
-            ->add('nomServant')
-            ->add('prenomServant')
-            ->add('dateNaissance', DateType::class,[
-                'widget' =>'choice'
+            ->add('nomServant',TextType::class,[
+                'label' =>'Nom',
             ])
-            ->add('lieuNaissance')
-            ->add('adresseServant')
-            ->add('fonctionServant')
-            ->add('centreInteret')
+            ->add('prenomServant',TextType::class,[
+                'label' =>'Prénom(s)',
+            ])
+            ->add('dateNaissance', BirthdayType::class,[
+                'label' =>'Date de naissance',
+                'widget' =>'single_text'
+            ])
+            ->add('lieuNaissance',TextType::class,[
+                'label' =>'Lieu de naissance',
+            ])
+            ->add('adresseServant',TextType::class,[
+                'label' =>'Adresse',
+            ])
+            ->add('fonctionServant',TextType::class,[
+                'label' =>'Fonction',
+            ])
+            ->add('centreInteret',TextType::class,[
+                'label' =>'Centre d\'intérêt',
+            ])
             ->add('dateAdhesion',DateType::class,[
-                'widget' =>'choice'
+                'label' =>'Date d\'adhésion',
+                'widget' =>'single_text'
             ])
-            ->add('groupeServant')
-            ->add('pereServant')
-            ->add('mereServant')
-            ->add('mailServant')
-            ->add('fbServant')
-            ->add('contactOrange')
-            ->add('contactTelma')
-            ->add('contactAirtel')
+            ->add('groupeServant',TextType::class,[
+                'label' =>'Groupe',
+            ])
+            ->add('pereServant',TextType::class,[
+                'label' =>'Père',
+            ])
+            ->add('mereServant',TextType::class,[
+                'label' =>'Mère',
+            ])
+            ->add('mailServant',TextType::class,[
+                'label' =>'E-mail',
+            ])
+            ->add('fbServant',TextType::class,[
+                'label' =>'Pseudo Facebook',
+            ])
+            ->add('contactOrange',TelType::class,[
+                'label' =>'Numéro Orange',
+            ])
+            ->add('contactTelma',TextType::class,[
+                'label' =>'Numéro Telma',
+            ])
+            ->add('contactAirtel',TextType::class,[
+                'label' =>'Numéro Airtel',
+            ])
             ->add('dateBapteme',DateType::class,[
-                'widget' =>'choice'
+                'label' => 'Date de baptême',
+                'widget' =>'single_text'
             ])
-            ->add('paroisseBapteme')
+            ->add('paroisseBapteme',TextType::class,[
+                'label' =>'Paroisse Baptême'
+            ])
             ->add('dateCommunion',DateType::class,[
-                'widget' =>'choice'
+                'label' => 'Date du 1ère Communiion',
+                'widget' =>'single_text'
             ])
-            ->add('paroisseCommunion')
+            ->add('paroisseCommunion',TextType::class,[
+                'label' =>'Paroisse 1ère Communion',
+            ])
             ->add('dateConfirmation',DateType::class,[
-                'widget' =>'choice'
+                'label' => 'Date de Confirmation',
+                'widget' =>'single_text'
             ])
-            ->add('paroisseConfirmation')
+            ->add('paroisseConfirmation',TextType::class,[
+                'label' => 'Paroisse Confirmation'
+            ])
 
             ->add('etatBadge')
             ->add('codeQR')

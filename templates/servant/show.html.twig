@@ -5,8 +5,9 @@
             <div class="metadata">Ajouté le : {{ servant.createdAt | date('d/m/Y') }} à {{ servant.createdAt | date('H:i') }}</div>
             <p>Nom Paroisse: {{ servant.paroisseServant.nomParoisse }}</p>
             <p>Nom Servant : {{ servant.nomServant }}</p>
+            <p>  {{ servant.referenceServant }}</p>
 
-            <a href="{{ path('paroisse') }}" class="btn btn-primary">RETOUR</a>
+            <a href="{{ path('servant') }}" class="btn btn-primary">RETOUR</a>
         </div>
     </article>
 {% endblock %}

@@ -47,6 +47,11 @@ class Paroisse
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $abbreviationParoisse;
+
     public function __construct()
     {
         $this->servants = new ArrayCollection();
@@ -131,6 +136,18 @@ class Paroisse
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getAbbreviationParoisse(): ?string
+    {
+        return $this->abbreviationParoisse;
+    }
+
+    public function setAbbreviationParoisse(?string $abbreviationParoisse): self
+    {
+        $this->abbreviationParoisse = $abbreviationParoisse;
 
         return $this;
     }
