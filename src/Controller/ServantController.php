@@ -11,6 +11,8 @@ use App\Repository\ServantRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\IsNull;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCodeBundle\Response\QrCodeResponse;
 
 class ServantController extends AbstractController
 {
@@ -27,6 +29,7 @@ class ServantController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Servant::class);
         $servants = $repo->findAll();
+
         return $this->render('servant/index.html.twig', [
             'controller_name' => 'ServantController',
             'servants' => $servants
@@ -44,7 +47,7 @@ class ServantController extends AbstractController
         }
         $form= $this->createForm(ServantType::class,$servant);
         $form->handleRequest($request);
-        $lastId=0;
+        $last=0;
         $num=0;
         if($form->isSubmitted() && $form->isValid()){
 
@@ -54,14 +57,17 @@ class ServantController extends AbstractController
                 $lastId= $serv->recuperationMaxIdParProisse($servant->getParoisseServant()->getId());
 
                 if ($lastId[0][1]==NULL){
-                    $lastId=0;
+                    $last=0;
+                }else{
+                    $last= $lastId[0][1];
                 }
 
-                $num=$lastId+1;
+                $num=$last+1;
 
             }else{
                 $lastId= $serv->recuperationMaxIdParProisse($servant->getParoisseServant()->getId());
-                $num=$lastId[0][1] +1;
+                $last=$lastId[0][1];
+                $num= $last+1;
             }
 
             //Traitement abbreviation Paroisse
@@ -84,6 +90,10 @@ class ServantController extends AbstractController
             $fichier= $num." ".$abr. " ".$servant->getNomServant(). " " .$servant->getPrenomServant(). '.'.$images->guessExtension();
             $images->move($this->getParameter('images_directory'),$fichier);
             $servant->setPhotoServant($fichier);
+            $qrCode = new QrCode();
+            $qrCode->setText($ref);
+            dump($qrCode);
+           // $servant->setCodeQR($qrCode);
             $this->em->persist($servant);
             $this->em->flush();
             return $this->redirectToRoute('servant_show',[
