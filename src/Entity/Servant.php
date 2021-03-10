@@ -4,12 +4,18 @@ namespace App\Entity;
 
 use App\Repository\ServantRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ServantRepository::class)
  */
 class Servant
 {
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -146,11 +152,6 @@ class Servant
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $codeQR;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=Paroisse::class, inversedBy="servants")
@@ -471,18 +472,6 @@ class Servant
     public function setCodeQR(?string $codeQR): self
     {
         $this->codeQR = $codeQR;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

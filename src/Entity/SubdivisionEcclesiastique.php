@@ -6,6 +6,7 @@ use App\Repository\SubdivisionEcclesiastiqueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -13,6 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class SubdivisionEcclesiastique
 {
+    /**
+     * Hook timestampable behavior
+     * updates createdAt, updatedAt fields
+     */
+    use TimestampableEntity;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -47,10 +54,6 @@ class SubdivisionEcclesiastique
      */
     private $dioceseSubdivision;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
 
     public function __construct()
     {
@@ -140,15 +143,4 @@ class SubdivisionEcclesiastique
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
 }
